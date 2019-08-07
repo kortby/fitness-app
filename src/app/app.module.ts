@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 // Material
 import { MaterialModule } from './material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,8 +21,9 @@ import { CurrentTrainingComponent } from './training/current-training/current-tr
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { PastTrainingComponent } from './training/past-training/past-training.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavlistComponent } from './navigation/sidenavlist/sidenavlist.component';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CurrentTrainingComponent,
     NewTrainingComponent,
     PastTrainingComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent,
+    SidenavlistComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+<mat-list>
+    <a mat-list-item [routerLink]="['/signup']" (click)="onClose()">Sign Up</a>
+    <a mat-list-item [routerLink]="['/login']" (click)="onClose()">Login</a>
+    <a mat-list-item [routerLink]="['/training']" routerLinkActive="router-link-active"
+        (click)="onClose()">Training</a>
+    <button mat-icon-button>Log Out</button>
+</mat-list>
