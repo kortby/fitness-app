@@ -1,0 +1,22 @@
+mat-sidenav, mat-sidenav-container, mat-sidenav-content {
+    height: 100%;
+}
+
+mat-sidenav {
+    padding: 20px;
+}
+
+mat-toolbar a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+mat-list a {
+    text-decoration: none;
+}
+
+mat-list a:hover {
+    background-color: #ccc;
+}

@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-list>
+        <a mat-list-item [routerLink]="['/signup']" (click)="sidenav.close()">Sign Up</a>
+        <a mat-list-item [routerLink]="['/login']" (click)="sidenav.close()">Login</a>
+        <a mat-list-item [routerLink]="['/training']" routerLinkActive="router-link-active" (click)="sidenav.close()">Training</a>
+        <button mat-icon-button>Log Out</button>
+    </mat-list>
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutGap="20px">
+      <button type="button" mat-button (click)="sidenav.toggle()" fxHide.gt-sm>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
+      </button>
+      <button mat-button [routerLink]="['/']">
+        My Fitness App
+      </button>
+      <div fxFlex fxLayoutAlign="end end" fxHide.sm>
+        <a [routerLink]="['/signup']">Sign Up</a>
+        <a [routerLink]="['/login']">Login</a>
+        <a [routerLink]="['/signup']" routerLinkActive="router-link-active">Training</a>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
