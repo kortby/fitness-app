@@ -1,7 +1,21 @@
 <mat-list>
-    <a mat-list-item [routerLink]="['/signup']" (click)="onClose()">Sign Up</a>
-    <a mat-list-item [routerLink]="['/login']" (click)="onClose()">Login</a>
-    <a mat-list-item [routerLink]="['/training']" routerLinkActive="router-link-active"
-        (click)="onClose()">Training</a>
-    <button mat-icon-button>Log Out</button>
+  <a
+    mat-list-item
+    [routerLink]="['/signup']"
+    (click)="onClose()"
+    *ngIf="!isAuth"
+    >Sign Up</a
+  >
+  <a mat-list-item [routerLink]="['/login']" (click)="onClose()" *ngIf="!isAuth"
+    >Login</a
+  >
+  <a
+    mat-list-item
+    [routerLink]="['/training']"
+    routerLinkActive="router-link-active"
+    (click)="onClose()"
+    *ngIf="isAuth"
+    >Training</a
+  >
+  <a mat-list-item (click)="onLogout()" *ngIf="isAuth">Log Out</a>
 </mat-list>
