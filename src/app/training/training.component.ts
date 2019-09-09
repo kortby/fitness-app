@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Subscription } from "rxjs";
 import { TrainingService } from "./training.service";
-import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-training",
@@ -11,8 +10,9 @@ import { NgForm } from "@angular/forms";
 export class TrainingComponent implements OnInit {
   ongoingtraining = false;
   exerciseSubsciption: Subscription;
+  @Output() trainingStart = new EventEmitter<void>();
 
-  constructor(private trainingService: TrainingService) {}
+  constructor(private trainingService: TrainingService) { }
 
   ngOnInit() {
     this.exerciseSubsciption = this.trainingService.exerciseChanged.subscribe(
@@ -26,7 +26,7 @@ export class TrainingComponent implements OnInit {
     );
   }
 
-  onStartTraining(form: NgForm) {
-    this.trainingService.startExercise(form.value.exercise);
+  onStartTraining() {
+    this.trainingStart.emit();
   }
 }
