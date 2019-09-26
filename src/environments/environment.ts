@@ -5,13 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCpjiz1bc-z3fp4h4-gUTj59vY79dWnnuU',
-    authDomain: 'my-fitness-ea7eb.firebaseapp.com',
-    databaseURL: 'https://my-fitness-ea7eb.firebaseio.com',
-    projectId: 'my-fitness-ea7eb',
-    storageBucket: 'my-fitness-ea7eb.appspot.com',
-    messagingSenderId: '919868993759',
-    appId: '1:919868993759:web:570373d10707291974396a'
+    apiKey: '<your-key>',
+    authDomain: '<your-project-authdomain>',
+    databaseURL: '<your-database-URL>',
+    projectId: '<your-project-id>',
+    storageBucket: '<your-storage-bucket>',
+    messagingSenderId: '<your-messaging-sender-id>'
   }
 };
 
