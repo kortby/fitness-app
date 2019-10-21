@@ -1,23 +1,36 @@
 import { Exercise } from './exercise.model';
-import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class TrainingService {
   exerciseChanged = new Subject<Exercise>();
   exercisesChanged = new Subject<Exercise[]>();
+  finishedExerciseChanged = new Subject<Exercise[]>();
   availableExerices: Exercise[] = [];
 
   private runinigExercise: Exercise;
-  private exercises: Exercise[] = [];
 
   constructor(private db: AngularFirestore) {}
 
   fetchAvailableExercises() {
-    return this.db
-      .collection('available-exercises')
-      .valueChanges()
+    this.db
+      .collection('availableExercises')
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as Exercise;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      )
       .subscribe((exercises: Exercise[]) => {
         this.availableExerices = exercises;
         this.exercisesChanged.next([...this.availableExerices]);
@@ -26,13 +39,13 @@ export class TrainingService {
 
   startExercise(selectedId: string) {
     this.runinigExercise = this.availableExerices.find(
-      exercise => exercise.id === selectedId
+      exercise => exercise.name === selectedId
     );
     this.exerciseChanged.next({ ...this.runinigExercise });
   }
 
   completeExercise() {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runinigExercise,
       date: new Date(),
       state: 'completed'
@@ -42,7 +55,7 @@ export class TrainingService {
   }
 
   cancelExercise(progress: number) {
-    this.exercises.push({
+    this.addDataToDatabase({
       ...this.runinigExercise,
       duration: (this.runinigExercise.duration * progress) / 100,
       calories: (this.runinigExercise.calories * progress) / 100,
@@ -57,7 +70,16 @@ export class TrainingService {
     return { ...this.runinigExercise };
   }
 
-  getAllExercises() {
-    return this.exercises.slice();
+  fetchAllCompletedExercises() {
+    return this.db
+      .collection('finishedExercises')
+      .valueChanges()
+      .subscribe((exercises: Exercise[]) => {
+        this.finishedExerciseChanged.next(exercises);
+      });
+  }
+
+  private addDataToDatabase(exercise: Exercise) {
+    this.db.collection('finishedExercises').add(exercise);
   }
 }

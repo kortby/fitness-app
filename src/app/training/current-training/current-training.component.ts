@@ -34,7 +34,6 @@ export class CurrentTrainingComponent implements OnInit {
         clearInterval(this.timer);
       }
     }, step);
-    console.log(step);
   }
 
   onStop() {

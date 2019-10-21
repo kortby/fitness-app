@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TrainingService } from '../training.service';
 import { Exercise } from '../exercise.model';
 import { NgForm } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -23,17 +22,6 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
       }
     );
     this.trainingService.fetchAvailableExercises();
-    // this.exercises = this.db
-    //   .collection('available-exercises')
-    //   .snapshotChanges()
-    //   .map(docArr => {
-    //     return docArr.map(doc => {
-    //       return {
-    //         id: doc.payload.doc.id,
-    //         ...doc.payload.doc.data()
-    //       };
-    //     });
-    //   });
   }
 
   onStartTraining(form: NgForm) {
