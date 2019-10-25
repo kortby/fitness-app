@@ -2,7 +2,7 @@
   <button type="button" mat-button (click)="onToggleSidenav()" fxHide.gt-sm>
     <mat-icon aria-hidden="false" aria-label="Example home icon">list</mat-icon>
   </button>
-  <button mat-button [routerLink]="['/']">My Fitness App</button>
+  <button mat-button [routerLink]="['/']">Epic Workout</button>
   <div class="navs" fxFlex fxLayoutAlign="end end" fxHide.lt-sm>
     <a [routerLink]="['/signup']" *ngIf="!isAuth">
       Sign Up
