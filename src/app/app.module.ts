@@ -32,6 +32,10 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import { UIService } from './shared/ui.service';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { UIService } from './shared/ui.service';
     WelcomeComponent,
     HeaderComponent,
     SidenavlistComponent,
-    StopTrainingComponent
+    StopTrainingComponent,
+    DataTableComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,10 @@ import { UIService } from './shared/ui.service';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
